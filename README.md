@@ -43,8 +43,8 @@ npx -y skills add siuserxiaowei/miaoji-decon -g --skill miaoji-decon -y --full-d
 
 ## 一篇复盘长什么样
 
-见 [`skills/miaoji-decon/examples/sample-AI硬件出海午餐会.md`](skills/miaoji-decon/examples/sample-AI硬件出海午餐会.md) —— 一场 2 小时、约 25 位创始人的 AI 硬件出海午餐会，飞书原 AI 摘要把它整成了"客户购车情况"，深度学习复盘则挖出了硬件三条后端变现路径、众筹出海打法、方案商版权坑、玄学变现漏斗、token 算力生意等 8 个知识点。
-在线网页版：<https://siuserxiaowei.github.io/miaoji-decon/>
+复盘产物为**内部私有资料**，含真实人名/业务，仅存于本地 Obsidian 库与内部飞书，不在公开仓库或公开网页展示。本仓库只公开 skill 代码与模板。
+
 
 ## 运行依赖
 
