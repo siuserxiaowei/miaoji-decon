@@ -70,7 +70,7 @@ npx -y skills add siuserxiaowei/miaoji-decon -g --skill miaoji-decon -y --full-d
 
 ## 一篇拆解长什么样
 
-见 [`skills/miaoji-decon/examples/sample-AI硬件午餐会.md`](skills/miaoji-decon/examples/sample-AI硬件午餐会.md) —— 一场 2 小时的智能硬件午餐会，飞书原 AI 摘要把它整成了"客户购车情况"，道法术器拆解则捞出了品牌护城河打法、AI token 采购决策、玄学命理变现漏斗、698元×800台预售未发货的现金流雷。
+见 [`skills/miaoji-decon/examples/sample-AI硬件出海午餐会.md`](skills/miaoji-decon/examples/sample-AI硬件出海午餐会.md) —— 一场 2 小时的智能硬件午餐会，飞书原 AI 摘要把它整成了"客户购车情况"，道法术器拆解则捞出了品牌护城河打法、AI token 采购决策、玄学命理变现漏斗、698元×800台预售未发货的现金流雷。
 
 ## 参考来源
 
