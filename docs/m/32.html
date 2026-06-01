@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>智能屏知识库、人脸声纹与角色化后台方案 · 学习复盘</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700;900&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../style.css">
+</head><body><div class="wrap">
+<div class="topbar"><span class="dot"></span><a href="../index.html">妙记拆解 · 会议学习复盘库</a></div>
+<header class="hero"><div class="seal">道法<br>術器</div>
+<div class="kicker">学习复盘 —— 道 · 法 · 术 · 器 · 势</div>
+<h1 class="title">智能屏知识库、人脸声纹与角色化后台方案</h1>
+<div class="meta">2025-09-02</div>
+<div class="scene"><span>AI硬件</span><span>知识库</span><span>智能屏</span></div></header>
+<article id="content"><div class="loading">墨迹未干，正在铺纸……</div></article>
+<a class="back" href="../index.html">← 返回复盘库</a>
+<footer>由 <a href="https://github.com/siuserxiaowei/miaoji-decon">miaoji-decon · 妙记拆解</a> 自动生成 · 读完最重要的不是收藏，是选一个动作 7 天内验证<br>来源：飞书妙记导读/逐字稿 · 人名以 ASR 识别为准 · 数字为现场口径未独立核实</footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+var SRC = "# 2025-09-02 · 智能屏知识库、人脸声纹与角色化后台方案 · 深度学习复盘\n\n> 场景：客户希望在服务器上部署后台和本地化知识库，接入智能屏/硬件，结合人脸、声纹、角色设定和长期数据保存，实现健康、婚姻、小孩等模块化对话。双方讨论 API、数据库、成本、样品测试和建群推进。\n> ⚠️ 本场基于飞书妙记导读和原始转写整理，信息密度有限；以下只抽取能复用到产品、工程、售前或交付的方法，不保留私聊原文。\n\n## ⏱ 如果只读 10 分钟（5 条带走判断）\n\n1. **智能屏的价值不在屏幕**，而在“识别谁、调用什么知识、用什么角色回应”。\n2. **人脸/声纹识别要和数据库身份匹配打通**，否则只是孤立能力。\n3. **长期保存语音成本高**，优先保存结构化文本更现实。\n4. **角色设定必须有知识库支撑**，不然只是 prompt 表演。\n5. **硬件样品、视频案例和工作群是把意向推进到方案的关键动作。**\n\n## 🎯 这篇真正能学什么\n\n这场会的价值不在“多知道一个项目”，而在看到一个具体交付问题如何被拆成可判断的边界：哪些是必须先定的约束，哪些是可以后置的体验，哪些会影响报价、周期和责任。复盘时重点看方法，不把 ASR 里的零碎表达当成确定事实。\n\n## 🧭 道法术器势（→ 你可以怎么用）\n\n| 层 | 本场对应 | 你可以怎么用 |\n|---|---|---|\n| **道** 明向 | 先抓真实目标：稳定交付、成本可控、需求边界清楚。 | 遇到类似项目，先问“什么结果算成功”。 |\n| **法** 立本 | 把抽象需求拆成范围、周期、成本、风险和验收。 | 报价或排期前先做一页范围表。 |\n| **术** 立策 | 用 demo、文档、脚本、样品或会议把模糊点落地。 | 不在微信群里反复猜，尽快拉到可验证物。 |\n| **器** 成事 | 依赖具体工具/硬件/后台/协议/生产文件来完成交付。 | 每个“能做”后面都补一个“靠什么做”。 |\n| **势** 察时 | AI 硬件和垂直 AI 应用正在从 demo 进入量产/运维阶段。 | 少做炫技功能，多补交付、维护和成本模型。 |\n\n## 📚 深挖：3 个值得单独学的知识点\n\n### 1. 本地化知识库是项目底座\n本地化知识库是项目底座：医疗、婚姻、小孩等模块本质是不同知识域和角色策略，不应混成一个大杂烩。\n\n### 2. 识别链路要分清硬件能力和服务端能力\n识别链路要分清硬件能力和服务端能力：硬件采集，人脸/声纹比对可由 API 完成，结果再驱动个性化回答。\n\n### 3. 数据存储要有成本意识和隐私意识，保存所有语音既贵也敏感。\n数据存储要有成本意识和隐私意识，保存所有语音既贵也敏感。\n\n## 🛠 可直接复用的方法（含“不要误读成”）\n\n**方法 1：把智能硬件方案拆成采集层、识别层、知识层、角色层、存储层。**\n- 你可以怎么用：把它写进下一次需求澄清、报价或交付检查清单。\n- 不要误读成：靠口头理解就能替代文档和验证。\n\n**方法 2：先用样品和视频证明能力，再进入报价和合同。**\n- 你可以怎么用：把它写进下一次需求澄清、报价或交付检查清单。\n- 不要误读成：靠口头理解就能替代文档和验证。\n\n## 📅 7 天作业\n\n- **Day 1**：把这场会对应的项目写成“目标-范围-风险-下一步”四行。\n- **Day 2**：列出所有还没被文档化的口头约定。\n- **Day 3**：补一份最小验证或交付检查清单。\n- **Day 4**：把成本项拆成一次性成本和持续成本。\n- **Day 5**：找一个最容易扯皮的边界，写成验收标准。\n- **Day 6**：准备一个能让客户/团队快速理解的 demo、图或脚本。\n- **Day 7**：复盘本周有没有因为需求不清导致返工。\n\n## 🤔 回到自己业务的追问\n\n- 我的智能屏项目有没有明确“识别后要改变什么体验”？\n- 哪些数据必须长期保存，哪些只需当次处理？\n\n## ⚠️ 来源边界\n\n本篇基于 `AI会议纪要/2025-09-02 15_05 记录_导读.md`，必要时参考同名 `_原文.md`。原始材料为 ASR 自动转写，存在错字、断句和角色识别偏差；本文只沉淀整理产物，不包含 token/key、账号凭据或私聊原文。\n";
+var r = new marked.Renderer(); var ot = r.table.bind(r);
+r.table = function(h,b){ return '<div class="tablewrap">'+ot(h,b)+'</div>'; };
+marked.setOptions({renderer:r, gfm:true, breaks:false});
+document.getElementById('content').innerHTML = marked.parse(SRC);
+</script></body></html>
