@@ -96,4 +96,4 @@ Day1–Day7，每天一个能落地、能验证的小动作。把"学到"逼成"
 
 wiki 页 schema 对齐用户库（`type/title/aliases/related/sources` + Definition/How it works/Why it matters + `## 来源轨迹`），详见 `workflow.md`。
 
-完整真实样例见 `../examples/sample-AI硬件出海午餐会.md`。
+> 真实样例为内部私有资料（含真实人名/业务），只存在于本地 Obsidian 库 `会议纪要拆解/`，不放公开仓库。需要参照时挑库里任意一篇深度复盘（如「戴雨森AI投资思考访谈-学习复盘.md」）。

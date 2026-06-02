@@ -137,10 +137,10 @@ gh auth status                               # GitHub 已登录
 ### 1. 搜新妙记
 
 ```bash
-lark-cli minutes +search --as user --start <ISO时间> --end <ISO时间> --format json
+lark-cli minutes +search --as user --owner-ids me --start <ISO时间> --end <ISO时间> --page-size 30 --format json
 ```
 
-分页就用 `--page-token` 拉完。
+**必看 `references/workflow.md` 的「lark-cli 实战踩坑铁律」**：`--owner-ids me` 不能省（否则报错返回空被误判成"无新会议"）、`--page-size` 上限 30、先判 `ok` 再用 `data`、代理偶发 ECONNRESET 要重试。分页 `has_more:true` 时用 `--page-token` 拉完。
 
 ### 2. 从 URL 提取 token
 
