@@ -1,0 +1,13 @@
+{
+  "note_id": "1912868579112712840",
+  "fetched_at": "2026-06-15T04:38:00.265Z",
+  "files": [
+    "raw-note-detail.json",
+    "raw-original.json",
+    "raw-children-count.json",
+    "raw-children.json"
+  ],
+  "token_candidates_checked": 2,
+  "device_id_used": true,
+  "decrypt_records_count": 0
+}
