@@ -38,14 +38,25 @@ cd miaoji-decon
 python3 -m http.server 8000
 ```
 
+本地验证 / Local validation:
+
+```bash
+python3 scripts/validate_repo.py
+python3 -m unittest discover -s tests -v
+python3 -m compileall .
+```
+
 ## 仓库结构 / Repository Map
 
 | 路径 / Path | 中文说明 | English |
 | --- | --- | --- |
 | `README.md` | 项目入口说明，先读这里。 | Main project entry point and orientation. |
 | `docs` | 文档或 GitHub Pages 输出目录。 | Documentation or GitHub Pages output. |
-| `skills` | 项目文件或目录。 | Project file or directory. |
-| `.gitignore` | 项目文件或目录。 | Project file or directory. |
+| `docs/superpowers` | 本次设计与实施计划。 | Design and implementation plans. |
+| `skills` | skill 主体、模板与工作流说明。 | Skill files, templates, and workflow references. |
+| `scripts` | 仓库静态校验脚本。 | Repository validation scripts. |
+| `tests` | 校验脚本的单元测试。 | Unit tests for validation scripts. |
+| `.gitignore` | 本地运行与缓存忽略规则。 | Ignore rules for local runtime and cache files. |
 
 ## 维护备注 / Maintenance Notes
 
@@ -92,7 +103,8 @@ python3 -m http.server 8000
 ## 能做什么
 
 - 定时扫描 / 手动处理飞书妙记新录音（去重 + 失败补偿）。
-- 按场景分类（AI硬件 / 知识 / 人情世故 / 大佬分享 / 饭局闲聊 / 出海）自适应详略。
+- 支持用户粘贴会议纪要/逐字稿或提供本地文本附件，进入 draft-only 学习复盘模式；没有 Feishu token 时不写 Base/Doc、不 push GitHub。
+- 按场景分类（AI硬件 / 知识 / 人情世故 / 大佬分享 / 饭局闲聊 / 出海 / 自媒体运营）自适应详略。
 - 深挖每场会的信息点/知识点，按学习复盘结构组织；严格区分"讲者讲 vs 我引申"、数字带销售口径标存疑、不堆标签噪声、不编造、信息空就少写别注水。
 - 三端归档：Obsidian「会议纪要拆解」+ 飞书在线文档/多维表格 + push GitHub。
 - 两层复利：复盘是 source 层，把道/法/势/人 升华进 Wiki 母库（概念页/人物页），越攒越厚。
