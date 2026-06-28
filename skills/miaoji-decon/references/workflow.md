@@ -5,13 +5,24 @@
 这些坑会让扫描**静默失败**（返回空被误判成"无新会议"），是实跑中踩出来的：
 
 - **`minutes +search` 必须带 `--owner-ids me`**。不带会返回 `ok:false` + 空 `data`，看起来像"没有新妙记"，其实是参数错误。
-- **`--page-size` 最大 30**。传 50/100 直接 validation 失败、空返回。分页用 `--page-token`，`has_more:true` 就继续拉。
+- **`--page-size` 最大 30**。实际命令写 `--page-size 30`；传 50/100 直接 validation 失败、空返回。分页用 `--page-token`，`has_more:true` 就继续拉。
 - **先判 `ok` 再用 `data`**。`ok:false` 时读 `error.message`，别把错误当"无结果"。
 - **按时间窗口搜会漏**："内容旧但最近才上传"的妙记，其 `start_time` 是旧的，窗口搜不到；要么放宽窗口，要么靠 `processed.jsonl` 去重后处理 owner 全量。
 - **代理偶发 ECONNRESET**：经本机代理（如 Clash）时 search/notes 会偶发连接中断；同一命令最多重试 3 次。
 - **`--output-dir` / `docs --content` 要相对路径**：报"must be a relative path within the current directory"时，先 `cd` 到目标目录再用 `--output-dir .`，或用 stdin。
 - **lark-cli 依赖 node**：node 缺失时 lark-cli 直接 `env: node: No such file or directory`。定时脚本应先 `command -v node` 自检；缺了就 `brew install node`。
 - **逐字稿可能为空**：妙记刚生成时转写可能还没好，`vc +notes` 拿到空逐字稿。这时**不要写空复盘文件**，把 token 记进 `processed.jsonl` 标 `archived:false`（下轮可重试），跳过。
+
+## 粘贴文本 / 本地附件输入（pasted text）
+
+当输入来自用户粘贴文本或本地 `.txt/.md` 附件，而不是飞书 URL/token：
+
+1. 先读完所有用户指定文件。
+2. 将文件名、录音日期、会议主题写入草稿 frontmatter；没有的信息写 `unknown`，不要猜。
+3. 跳过 `minutes +search`、`vc +notes`、Base、Doc、GitHub push。
+4. 只生成 draft-only 学习复盘，并在 `⚠️ 来源边界` 写明“基于用户提供文本，未连接飞书原始妙记”。
+5. 不把原始粘贴文本、附件正文或 draft-only 复盘提交到公开仓库；需要持久化时只写私有目标。
+6. 如果后续用户补充 Feishu URL/token，再按手动单条妙记流程补齐三端归档。
 
 ## 飞书 Doc（详版，复用 miaoji-s 逻辑）
 
