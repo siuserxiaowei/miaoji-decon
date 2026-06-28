@@ -1,64 +1,68 @@
 # 妙记拆解 · 道法术器势
 
 <!-- SIUSER-REPO-GUIDE:START -->
-## Repository Guide
+## 项目介绍 / Project Introduction
 
-### What This Repository Does
-
+### 中文
 妙记拆解复盘系统：监控飞书妙记，把会议自动拆成可学习、可追问、可归档的深度复盘。
 
-English summary: Meeting deconstruction system that turns Feishu minutes into learnable reviews and follow-up assets.
+### English
+Meeting deconstruction system that turns Feishu minutes into learnable reviews and follow-up assets.
 
-### Online Entry Points
+## 使用方式 / Usage
 
-- GitHub repository: https://github.com/siuserxiaowei/miaoji-decon
-- Live / GitHub Pages: https://siuserxiaowei.github.io/miaoji-decon/
-- Default branch: `main`
-- Primary language: `not specified`
+### 中文
+1. 优先打开在线入口或本地静态服务查看最终页面。
+2. 内容型仓库通常从 `README.md`、`docs/`、`data/` 或 `content/` 开始阅读。
+3. 更新资料后，重新生成或刷新静态页面，并检查链接、图片和文字是否正常。
 
-### How To Read / Learn This Repository
+### English
+1. Start with the live link or a local static server to view the final page.
+2. For content repositories, begin with `README.md`, `docs/`, `data/`, or `content/`.
+3. After updating material, regenerate or refresh the static page and check links, images, and copy.
 
-1. 先读本 README，确认项目目标、在线入口和本地运行方式。
-2. 打开上方 Live / GitHub Pages 链接，先从最终效果理解项目。
-3. 优先阅读线上页面或 `index.html`，再看 `data/`、`assets/`、`scripts/` 等生成材料。
-4. 如果要修改内容，先小范围改动，再运行本 README 中的验证命令。
+## 入口与元信息 / Entry Points & Metadata
 
-### Clone This Repository
+- GitHub 仓库 / Repository: https://github.com/siuserxiaowei/miaoji-decon
+- Live / 在线入口：https://siuserxiaowei.github.io/miaoji-decon/
+- 默认分支 / Default branch: `main`
+- 主要语言 / Primary language: `project`
+- 可见性 / Visibility: `public`
+- 仓库类型 / Repository type: `source`
+
+## 本地运行 / Local Run
 
 ```bash
 git clone https://github.com/siuserxiaowei/miaoji-decon.git
 cd miaoji-decon
-```
-
-### Run Or View Locally
-
-```bash
 python3 -m http.server 8000
 ```
 
-然后打开 `http://127.0.0.1:8000/`。
+## 仓库结构 / Repository Map
 
-### Repository Map
+| 路径 / Path | 中文说明 | English |
+| --- | --- | --- |
+| `README.md` | 项目入口说明，先读这里。 | Main project entry point and orientation. |
+| `docs` | 文档或 GitHub Pages 输出目录。 | Documentation or GitHub Pages output. |
+| `skills` | 项目文件或目录。 | Project file or directory. |
+| `.gitignore` | 项目文件或目录。 | Project file or directory. |
 
-| Path | Purpose |
-| --- | --- |
-| `README.md` | 项目入口说明，先读这里。 |
-| `docs/` | 文档或 GitHub Pages 输出目录。 |
-| `skills/` | 项目目录。 |
+## 维护备注 / Maintenance Notes
 
-### Maintenance Notes
+- 中文：当项目目标、在线入口、运行命令或目录结构变化时，同步更新本说明。
+- English: Keep this guide updated when the project purpose, live link, run commands, or structure changes.
+- 中文：修改代码、数据或生成页面后，优先运行相关构建、测试或校验命令。
+- English: After changing code, data, or generated pages, run the relevant build, test, or validation command.
 
-- Keep this README in sync when the project purpose, live link, or run commands change.
-- Prefer small, focused commits when changing code, data, or generated pages.
-- Run the relevant build or validation command before publishing changes.
-- If this is a generated/static archive, update the source data first, then regenerate the public files.
+## 安全与隐私 / Safety & Privacy
 
-### Privacy And Safety
-
-- Do not commit API keys, tokens, passwords, cookies, private URLs, or internal account data.
-- Keep private source material out of public GitHub Pages output unless it has been explicitly cleared for publication.
-- When in doubt, run a quick secret scan such as `rg -n "token|secret|password|access_key|authorization"` before pushing.
+- 中文：不要提交 API key、token、密码、cookie、私有链接或内部账号资料。
+- English: Do not commit API keys, tokens, passwords, cookies, private URLs, or internal account data.
+- 中文：公开 GitHub Pages 前，确认资料已脱敏并允许公开。
+- English: Before publishing GitHub Pages output, confirm the material is redacted and cleared for public release.
 <!-- SIUSER-REPO-GUIDE:END -->
+
+
 
 > 监控飞书妙记 → 把每场会自动拆成一篇**能学到东西的「深度学习复盘」** → 归档到 Obsidian、飞书、并推送 GitHub。
 
