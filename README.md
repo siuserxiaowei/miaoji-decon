@@ -25,6 +25,7 @@ Meeting deconstruction system that turns Feishu minutes into learnable reviews a
 
 - GitHub 仓库 / Repository: https://github.com/siuserxiaowei/miaoji-decon
 - Live / 在线入口：https://siuserxiaowei.github.io/miaoji-decon/
+- 公开复盘索引 / Public-safe digests: https://siuserxiaowei.github.io/miaoji-decon/public/
 - 默认分支 / Default branch: `main`
 - 主要语言 / Primary language: `project`
 - 可见性 / Visibility: `public`
@@ -52,6 +53,7 @@ python3 -m compileall .
 | --- | --- | --- |
 | `README.md` | 项目入口说明，先读这里。 | Main project entry point and orientation. |
 | `docs` | 文档或 GitHub Pages 输出目录。 | Documentation or GitHub Pages output. |
+| `docs/public` | 脱敏公开版复盘页面。 | Public-safe digest pages. |
 | `docs/superpowers` | 本次设计与实施计划。 | Design and implementation plans. |
 | `skills` | skill 主体、模板与工作流说明。 | Skill files, templates, and workflow references. |
 | `scripts` | 仓库静态校验脚本。 | Repository validation scripts. |

@@ -18,6 +18,8 @@ body{color:var(--ink);background:var(--paper);font-family:var(--sans);font-size:
 .gate input:focus{border-color:var(--seal)}
 .gate button{margin-top:12px;width:100%;padding:12px;border:none;border-radius:10px;background:var(--seal);color:#fff;font-size:15px;font-family:var(--sans);cursor:pointer}
 .gate .err{color:var(--seal);font-size:13px;height:18px;margin-top:10px}
+.gate .public{display:inline-flex;margin-top:8px;color:var(--seal);font-size:13px;text-decoration:none;border-bottom:1px solid var(--sealsoft)}
+.gate .public:hover{border-bottom-color:var(--seal)}
 .app{display:none;height:100vh;overflow:hidden}.app.on{display:flex}
 .side{width:320px;flex:0 0 320px;background:var(--side);border-right:1px solid var(--line2);display:flex;flex-direction:column;height:100vh}
 .side .brand{padding:18px 20px 12px}.side .brand .k{font-family:var(--fr);font-style:italic;color:var(--seal);font-size:13px}
@@ -64,6 +66,7 @@ hr{border:0;height:1px;background:linear-gradient(90deg,transparent,var(--line2)
   <input id="pw" type="password" placeholder="密码" autocomplete="off">
   <button id="go">进入</button>
   <div class="err" id="err"></div>
+  <a class="public" href="./public/2026-06-27-ai-export-x-creator.html">公开复盘：AI 出海与 X 自媒体创业分享</a>
 </div></div>
 <button class="menu-btn" id="menuBtn" style="display:none">☰</button>
 <div class="app" id="app">
