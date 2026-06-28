@@ -15,6 +15,7 @@ class ValidateRepoTests(unittest.TestCase):
 
         skill = root / "skills/miaoji-decon/SKILL.md"
         skill.write_text("pasted-text\n出海\n自媒体运营\n--owner-ids me\n--page-size 30\n", encoding="utf-8")
+        (root / "README.md").write_text("出海\n自媒体运营\n", encoding="utf-8")
 
         headings = [
             "## ⏱ 如果只读 10 分钟",
@@ -30,10 +31,24 @@ class ValidateRepoTests(unittest.TestCase):
         ]
         if missing_template_heading:
             headings.pop()
-        (root / "skills/miaoji-decon/references/template.md").write_text("\n".join(headings), encoding="utf-8")
+        template_phrases = [
+            "出海",
+            "自媒体运营",
+            "source_mode: feishu-minutes | pasted-text",
+            "minute_token: <token | none>",
+            "minute_url: <url | none>",
+            "不要把 pasted-text 写成 Feishu 原始妙记",
+            "基于用户提供的粘贴文本/本地附件",
+        ]
+        (root / "skills/miaoji-decon/references/template.md").write_text(
+            "\n".join(headings + template_phrases),
+            encoding="utf-8",
+        )
 
         (root / "skills/miaoji-decon/references/workflow.md").write_text(
-            "--owner-ids me\n--page-size 30\npasted text\nfailures.jsonl\n",
+            "--owner-ids me\n--page-size 30\npasted text\nfailures.jsonl\n"
+            "no Base/Doc/GitHub push\n"
+            "AI硬件/知识/人情世故/大佬分享/饭局闲聊/出海/自媒体运营\n",
             encoding="utf-8",
         )
         example_text = "真实复盘内容" if public_real_example else "真实复盘仅存于私有 Obsidian 库"
@@ -56,6 +71,21 @@ class ValidateRepoTests(unittest.TestCase):
     def test_public_real_example_is_error(self):
         tmp, root = self.make_repo(public_real_example=True)
         self.addCleanup(tmp.cleanup)
+        errors = validate_repo(root)
+        self.assertTrue(any("public examples" in error for error in errors))
+
+    def test_public_private_looking_extra_example_is_error(self):
+        tmp, root = self.make_repo()
+        self.addCleanup(tmp.cleanup)
+        (root / "skills/miaoji-decon/examples/leaky.md").write_text(
+            "# Synthetic leak guard\n"
+            "## 逐字稿\n"
+            "发言人A：这里是合成占位内容。\n"
+            "https://example.invalid/minutes/obcnSYNTHETIC0000\n"
+            "## 人物关系图\n"
+            "A -> B\n",
+            encoding="utf-8",
+        )
         errors = validate_repo(root)
         self.assertTrue(any("public examples" in error for error in errors))
 

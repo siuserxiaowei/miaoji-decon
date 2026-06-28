@@ -18,11 +18,13 @@
 当输入来自用户粘贴文本或本地 `.txt/.md` 附件，而不是飞书 URL/token：
 
 1. 先读完所有用户指定文件。
-2. 将文件名、录音日期、会议主题写入草稿 frontmatter；没有的信息写 `unknown`，不要猜。
-3. 跳过 `minutes +search`、`vc +notes`、Base、Doc、GitHub push。
-4. 只生成 draft-only 学习复盘，并在 `⚠️ 来源边界` 写明“基于用户提供文本，未连接飞书原始妙记”。
-5. 不把原始粘贴文本、附件正文或 draft-only 复盘提交到公开仓库；需要持久化时只写私有目标。
-6. 如果后续用户补充 Feishu URL/token，再按手动单条妙记流程补齐三端归档。
+2. 将文件名、录音日期、会议主题写入草稿 frontmatter；没有的信息写 `unknown`，不要猜；`source_mode: pasted-text`、`minute_token: none`、`minute_url: none`。
+3. 跳过 token lookup、`minutes +search`、`vc +notes`；不需要 lark-cli/Feishu token。
+4. 跳过 Base、Doc、GitHub push；换句话说，pasted text 是 **no Base/Doc/GitHub push** 的 draft-only 路径。
+5. 不写 Obsidian 正式库；只有用户明确要求本地/私有持久化时，才写私有目标，且不 push。
+6. 只生成 draft-only 学习复盘，并在 `⚠️ 来源边界` 写明“基于用户提供文本/本地附件，未连接飞书原始妙记”。
+7. 不把原始粘贴文本、附件正文或 draft-only 复盘提交到公开仓库。
+8. 不进入 `failures.jsonl` 的 Feishu-token 补偿队列；如果后续用户补充 Feishu URL/token，再按手动单条妙记流程补齐三端归档。
 
 ## 飞书 Doc（详版，复用 miaoji-s 逻辑）
 
@@ -50,7 +52,7 @@ lark-cli docs +update --api-version v2 --as user --doc <index_doc_token> --comma
 |---|---|---|
 | 会议标题 | 文本 | |
 | 日期 | 日期 | |
-| 场景类型 | 多选 | AI硬件/知识/人情世故/大佬分享/饭局闲聊 |
+| 场景类型 | 多选 | AI硬件/知识/人情世故/大佬分享/饭局闲聊/出海/自媒体运营 |
 | 道 | 多行文本 | D-* 条目摘要 |
 | 法 | 多行文本 | F-* |
 | 术 | 多行文本 | S-* |

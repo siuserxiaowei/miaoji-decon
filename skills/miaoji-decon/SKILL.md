@@ -10,7 +10,7 @@ description: |
 
 核心心智（继承 sk-info-assets）：**不分析逐字稿，分析里面值得留下来的东西。** 不关心"它讲了什么"，关心"哪些是可复用的认知（道/法）、哪些是即时可执行的清单（术/器/信号）、哪些是关系资产（人）、哪些是可传播的原话（金句）"。
 
-每一次会议要有明确去处：
+每一次 Feishu 妙记会议要有明确去处；`pasted-text` 输入默认只生成草稿，走后文单独分支：
 
 - 一条妙记 → 一篇道法术器拆解。
 - 一篇拆解 → 同时落 Obsidian（主阵地）+ 飞书 Base（跨会检索）+ 飞书 Doc（可分享详版）。
@@ -82,6 +82,8 @@ description: |
 - 不要求 `minute_token`。
 - 不调用 `minutes +search` 或 `vc +notes`。
 - 不写飞书 Base/Doc，不 push GitHub。
+- 不写 Obsidian 正式库；只有用户明确要求本地/私有持久化时，才可写入私有目标，且仍不 push。
+- 不进入 Feishu token 去重、失败补偿或三端归档链路。
 - 输出仍按 `references/template.md` 的学习复盘结构。
 - 来源边界写明：基于用户提供的粘贴文本/附件，未连接飞书妙记原始记录。
 
@@ -255,19 +257,31 @@ git push {remote} {branch}
 
 ---
 
-## 工作流程（9 步）
+## 工作流程（按输入分支）
 
-1. **识别输入**：scan / 手动单条 / 仅草稿 / pasted-text 本地附件。
+### Feishu Minutes 分支（scan / 手动单条）
+
+1. **识别输入**：scan / 手动单条 / 仅草稿；只有 Feishu URL 或 `minute_token` 才进入本分支。
 2. **准备状态**：确认 `~/.miaoji-decon/`，读 config/processed/failures，缺则建。
 3. **取新妙记**：scan 用 `minutes +search`；手动从 URL 提 token；优先补 `failures.jsonl`。
 4. **去重**：token 已 `archived=true` 跳过。
 5. **取产物**：`vc +notes`，缺权限按提示告知用户。
 6. **场景分类 + 道法术器拆解**：按 `references/template.md`，遵三条铁律。
-7. **写 Obsidian** → `git add/commit/push`。
-8. **写飞书 Base + Doc**，收口索引，三端互链。
+7. **写 Obsidian**；若不是"只生成草稿"，再 `git add/commit/push`。
+8. **写飞书 Base + Doc**，收口索引，三端互链；"只生成草稿"时跳过。
 9. **回执**：见下。
 
-任一外部写失败 → 写 `failures.jsonl`，记录已成功的部分（如 Obsidian 成功但 Base 失败，标 `archived=false`，下轮补 Base），不重复已成功步骤。
+任一 Feishu/GitHub 外部写失败 → 写 `failures.jsonl`，记录已成功的部分（如 Obsidian 成功但 Base 失败，标 `archived=false`，下轮补 Base），不重复已成功步骤。
+
+### Pasted-Text 分支（draft-only）
+
+1. **识别输入**：用户粘贴会议纪要/逐字稿，或提供本地 `.txt/.md` 附件且没有 Feishu URL/token 时，设置 `source_mode: pasted-text`。
+2. **读取来源**：先读完所有用户指定文本/附件；`minute_token: none`、`minute_url: none`，不要做 token lookup。
+3. **跳过外部取数**：不调用 `minutes +search`、不调用 `vc +notes`，不要求 lark-cli/Feishu token。
+4. **生成草稿**：按 `references/template.md` 产出学习复盘；来源边界必须写"基于用户提供的粘贴文本/本地附件，未连接飞书妙记原始记录"。
+5. **持久化边界**：默认只在当前对话返回草稿；只有用户明确要求本地/私有保存时，才写私有目标。跳过 Obsidian 正式库、GitHub push、飞书 Base、飞书 Doc、飞书索引。
+6. **补偿边界**：不读写 `processed.jsonl` / `failures.jsonl`，不进入 Feishu-token 失败补偿；后续用户补 Feishu URL/token 时，再从 Feishu Minutes 分支重新处理。
+7. **回执**：说明这是 pasted-text draft-only 结果，无 GitHub/Base/Doc 链接；如已按用户要求保存到私有位置，只回执私有路径。
 
 ---
 

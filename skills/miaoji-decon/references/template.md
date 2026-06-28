@@ -47,15 +47,19 @@ type: meeting-digest
 date: YYYY-MM-DD
 meeting: 会议标题
 duration: ...
-场景类型: [AI硬件|知识|人情世故|大佬分享|饭局闲聊|出海...]   # 可多选
-minute_token / minute_url
+场景类型: [AI硬件|知识|人情世故|大佬分享|饭局闲聊|出海|自媒体运营...]   # 可多选
+source_mode: feishu-minutes | pasted-text
+source_id: <minute_token | pasted-text>
+minute_token: <token | none>
+minute_url: <url | none>
+source_files: []   # pasted-text 可列用户提供的本地文件名/私有路径；无则留空
 tags: [会议纪要, 学习复盘, 道法术器势]
 ---
 
 # {会议标题} · 深度学习复盘
 
 > 场景：一句话交代这是什么局、谁在场、规模。
-> ⚠️ 如果飞书原 AI 摘要跑偏了，点出来——这是道法术器势的价值证明。
+> ⚠️ 如果 `source_mode: feishu-minutes` 且飞书原 AI 摘要跑偏了，点出来——这是道法术器势的价值证明。
 
 ## ⏱ 如果只读 10 分钟（N 条带走判断）
 5-8 条最该记住的判断，每条一句话、说人话、能独立成立。这是全文最重要的一屏。
@@ -90,7 +94,10 @@ Day1–Day7，每天一个能落地、能验证的小动作。把"学到"逼成"
 3-5 条讲者原话，保留原措辞，附一句"这句在说什么"。
 
 ## ⚠️ 来源边界
-基于飞书妙记逐字稿；人名以 ASR 为准；宏观数字为现场口径未独立核实；不含原始逐字稿正文。
+按 `source_mode` 二选一，不要把 pasted-text 写成 Feishu 原始妙记：
+
+- `feishu-minutes`：基于飞书妙记逐字稿/摘要；`minute_token` 与 `minute_url` 写真实值；人名以 ASR 为准；宏观数字为现场口径未独立核实；不含原始逐字稿正文。
+- `pasted-text`：基于用户提供的粘贴文本/本地附件，不是飞书原始妙记；`minute_token: none`、`minute_url: none`；可在 `source_files` 列本地来源文件名或私有路径；不含原始粘贴文本/附件正文；未核验的信息只写成“文本中出现/可验证假设”。
 ````
 
 ---
