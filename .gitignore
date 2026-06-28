@@ -2,3 +2,5 @@
 node_modules/
 *.log
 .worktrees/
+__pycache__/
+*.py[cod]
