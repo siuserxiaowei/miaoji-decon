@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>从注意力到收入：创业与 AI 应用分享的可执行拆解</title>
+  <style>
+    :root{
+      --paper:#f7f5f0;
+      --panel:#ffffff;
+      --ink:#20211f;
+      --muted:#676960;
+      --line:#d8d8d0;
+      --line-strong:#9fa096;
+      --red:#b5372f;
+      --red-soft:#fff1ee;
+      --green:#16794a;
+      --green-soft:#eff8f2;
+      --gold:#8a671a;
+      --gold-soft:#fff8e7;
+      --blue:#235f87;
+      --blue-soft:#eef6fb;
+      --serif:"Songti SC","Noto Serif SC",STSong,serif;
+      --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.75 var(--sans);letter-spacing:0}
+    a{color:inherit;text-decoration:none}
+    a:hover{color:var(--red)}
+    .shell{display:grid;grid-template-columns:252px minmax(0,1fr);min-height:100vh}
+    aside{position:sticky;top:0;height:100vh;background:var(--panel);border-right:1px solid var(--line);padding:26px 20px;display:flex;flex-direction:column}
+    .brand{display:flex;align-items:center;gap:10px;margin-bottom:30px;font-weight:800;font-size:18px}
+    .brand-mark{display:grid;grid-template-columns:7px 7px;gap:4px;align-items:end;width:18px;height:26px}
+    .brand-mark i{display:block;background:var(--red)}
+    .brand-mark i:first-child{height:15px}.brand-mark i:last-child{height:25px}
+    .brand small{display:block;color:var(--muted);font-size:12px;font-weight:500;margin-top:2px}
+    .toc-label{font-size:12px;color:var(--muted);font-weight:800;margin:0 0 8px}
+    .toc{display:grid;gap:2px}
+    .toc a{border-left:3px solid transparent;color:#3d3e3a;font-size:14px;padding:8px 8px 8px 12px}
+    .toc a:hover{border-left-color:var(--red);background:var(--red-soft);color:var(--red)}
+    .side-foot{margin-top:auto;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:12px}
+    .side-foot a{color:var(--red);display:inline-block;margin-top:8px}
+    .mobile-menu{display:none}
+    main{min-width:0}
+    .wrap{max-width:1120px;margin:0 auto;padding:36px 44px 84px}
+    .hero{background:var(--panel);border-bottom:1px solid var(--line)}
+    .crumb{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+    .crumb b{color:var(--red)}
+    h1{font-family:var(--serif);font-size:58px;line-height:1.12;letter-spacing:0;margin:34px 0 14px;max-width:960px}
+    .subtitle{max-width:780px;color:var(--muted);font-size:20px;margin:0 0 26px}
+    .metadata{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:4px}
+    .metadata span{border:1px solid var(--line);background:#fff;padding:4px 9px;color:var(--muted);font-size:12px}
+    .section{scroll-margin-top:24px}
+    .section-title{font-family:var(--serif);font-size:30px;line-height:1.25;margin:54px 0 12px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+    .section-intro{max-width:790px;color:var(--muted);font-size:17px;margin:0 0 22px}
+    .thesis{display:grid;grid-template-columns:86px minmax(0,1fr);background:var(--panel);border:1px solid var(--line-strong);padding:28px 30px}
+    .thesis-mark{font-family:Georgia,serif;color:var(--red);font-size:76px;line-height:.75}
+    .eyebrow{color:var(--red);font-size:13px;font-weight:800;margin:0 0 7px}
+    .thesis h2{font-family:var(--serif);font-size:36px;line-height:1.26;margin:0 0 10px}
+    .thesis p{margin:0;color:#3f403c;font-size:17px}
+    .signal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line);border-top:0;background:var(--panel)}
+    .signal-grid article{padding:20px 22px;border-right:1px solid var(--line)}
+    .signal-grid article:last-child{border-right:0}
+    .signal-grid h3{font-size:16px;margin:0 0 8px;display:flex;align-items:center;gap:8px}
+    .num{width:25px;height:25px;display:grid;place-items:center;background:var(--red);color:#fff;font-size:12px;font-weight:800}
+    .signal-grid p{margin:0;color:var(--muted);font-size:14px}
+    .takeaways{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .takeaway{background:var(--panel);border:1px solid var(--line);padding:20px;min-height:235px}
+    .takeaway .no{font-family:Georgia,serif;color:var(--red);font-size:29px;line-height:1}
+    .takeaway h3{font-family:var(--serif);font-size:21px;line-height:1.35;margin:8px 0}
+    .takeaway p{margin:0;color:#444640}
+    .takeaway b{color:var(--blue)}
+    .boundary{margin-top:14px;border-left:5px solid var(--gold);background:var(--gold-soft);padding:16px 18px;color:#5b4a21}
+    .matrix{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line)}
+    .matrix th,.matrix td{border-bottom:1px solid var(--line);padding:15px 16px;text-align:left;vertical-align:top}
+    .matrix th{background:#f1f0eb;color:#41423d;font-size:13px}
+    .matrix td:first-child{font-weight:800;width:12%;white-space:nowrap}
+    .matrix td:nth-child(2){width:36%}
+    .matrix tr:last-child td{border-bottom:0}
+    .model{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:22px}
+    .model-step{position:relative;background:var(--panel);border:1px solid var(--line);padding:17px;min-height:205px}
+    .model-step:not(:last-child)::after{content:"";position:absolute;width:10px;right:-10px;top:50%;border-top:2px solid var(--line-strong)}
+    .model-step .step{color:var(--red);font-family:Georgia,serif;font-size:27px;line-height:1}
+    .model-step h3{font-size:17px;margin:8px 0 7px}
+    .model-step p{margin:0;color:var(--muted);font-size:14px}
+    .deep-list{display:grid;gap:12px}
+    .deep{display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;background:var(--panel);border:1px solid var(--line);padding:20px 22px}
+    .deep-no{color:var(--red);font-family:Georgia,serif;font-size:35px;line-height:1}
+    .deep h3{font-family:var(--serif);font-size:23px;margin:0 0 7px}
+    .deep p{margin:6px 0;color:#484a44}
+    .deep strong{color:var(--blue)}
+    .methods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .method{background:var(--panel);border:1px solid var(--line);padding:22px}
+    .method h3{margin:0 0 12px;font-family:var(--serif);font-size:21px}
+    .method ol{margin:0;padding-left:20px;color:#444640}
+    .method li{margin:7px 0}
+    .method .misread{margin:16px 0 0;padding:12px;background:var(--red-soft);color:#7b2a25;font-size:14px}
+    .week{display:grid;gap:9px}
+    .day{display:grid;grid-template-columns:86px minmax(0,1fr) 286px;gap:16px;align-items:start;background:var(--panel);border:1px solid var(--line);padding:15px 17px}
+    .day-label{color:var(--red);font-weight:900;font-size:15px}
+    .day strong{display:block;margin-bottom:3px}.day p{margin:0;color:#454740}
+    .hard-signal{background:var(--green-soft);border-left:4px solid var(--green);padding:9px 11px;color:#28603f;font-size:14px}
+    .questions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .question{background:var(--blue-soft);border:1px solid #bfd8e8;padding:20px;color:#274e67;font-family:var(--serif);font-size:19px;line-height:1.5}
+    .quote-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    blockquote{margin:0;background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--red);padding:20px;font-family:var(--serif);font-size:20px;line-height:1.48}
+    blockquote p{margin:0}blockquote footer{font-family:var(--sans);color:var(--muted);font-size:13px;margin-top:12px}
+    .source{border:1px solid var(--line-strong);background:#fff;padding:22px 24px;color:#494a45}
+    .source h3{font-family:var(--serif);font-size:22px;margin:0 0 8px}.source p{margin:9px 0}.source ul{padding-left:20px;margin:10px 0}.source li{margin:5px 0}
+    footer.page-footer{border-top:1px solid var(--line);margin-top:64px;color:var(--muted);font-size:13px}
+    footer.page-footer .wrap{padding-top:22px;padding-bottom:28px}
+    @media(max-width:980px){
+      .shell{display:block}.mobile-menu{display:flex;position:fixed;z-index:20;right:14px;bottom:14px;width:48px;height:48px;border:1px solid var(--ink);background:var(--ink);color:#fff;align-items:center;justify-content:center;font-size:21px;cursor:pointer}
+      aside{display:none;position:fixed;z-index:15;inset:0 0 0 auto;width:min(320px,86vw);height:100vh;box-shadow:-8px 0 28px rgba(0,0,0,.16)}
+      aside.open{display:flex}.wrap{padding:30px 22px 72px}h1{font-size:43px}.model{grid-template-columns:repeat(3,minmax(0,1fr))}.model-step:nth-child(3)::after{display:none}.day{grid-template-columns:74px minmax(0,1fr)}.hard-signal{grid-column:2}
+    }
+    @media(max-width:680px){
+      body{font-size:15px}.wrap{padding:24px 16px 70px}h1{font-size:34px}.subtitle{font-size:17px}.thesis{grid-template-columns:46px minmax(0,1fr);padding:22px 18px}.thesis-mark{font-size:54px}.thesis h2{font-size:28px}
+      .signal-grid,.takeaways,.methods,.questions,.quote-grid{grid-template-columns:1fr}.signal-grid article{border-right:0;border-bottom:1px solid var(--line)}.signal-grid article:last-child{border-bottom:0}.takeaway{min-height:0}.matrix{font-size:13px}.matrix th,.matrix td{padding:11px 10px}.matrix td:first-child{white-space:normal}.matrix td:nth-child(2){width:auto}
+      .model{grid-template-columns:1fr}.model-step{min-height:0}.model-step:not(:last-child)::after{right:auto;left:26px;top:auto;bottom:-10px;width:0;height:10px;border-top:0;border-left:2px solid var(--line-strong)}.deep{grid-template-columns:46px minmax(0,1fr);padding:17px}.deep h3{font-size:20px}.day{grid-template-columns:1fr;gap:8px}.hard-signal{grid-column:auto}.question{font-size:18px}
+    }
+  </style>
+</head>
+<body>
+  <button class="mobile-menu" id="menu" aria-label="打开目录">☰</button>
+  <div class="shell">
+    <aside id="toc-panel">
+      <a class="brand" href="./">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i></span>
+        <span>妙记拆解<small>Public-safe review</small></span>
+      </a>
+      <p class="toc-label">本页结构</p>
+      <nav class="toc" aria-label="页面目录">
+        <a href="#thesis">一句核心命题</a>
+        <a href="#ten-minutes">如果只读 10 分钟</a>
+        <a href="#dfts">道法术器势</a>
+        <a href="#model">可迁移模型</a>
+        <a href="#deep">深挖知识点</a>
+        <a href="#methods">可直接复用的方法</a>
+        <a href="#week">7 天作业</a>
+        <a href="#questions">回到自己业务的追问</a>
+        <a href="#quotes">金句</a>
+        <a href="#source">来源边界</a>
+      </nav>
+      <div class="side-foot">公开版只保留可复用方法，不发布原始转录、私人联系信息和未经核验的收益说法。<br><a href="./">返回公开索引</a></div>
+    </aside>
+    <main>
+      <header class="hero">
+        <div class="wrap">
+          <div class="crumb"><b>深度学习复盘</b><span>·</span><span>创业 / 自媒体 / AI 应用</span><span>·</span><span>公开脱敏版</span></div>
+          <h1>从注意力到收入：创业与 AI 应用分享的可执行拆解</h1>
+          <p class="subtitle">把一场混杂着创业经验、内容建议和 AI 机会判断的线下分享，压缩成一条能验证的路径：先找到可服务的人和问题，再用公开证据换来对话，最后用交付与复购证明生意成立。</p>
+          <div class="metadata"><span>整理日期：2026-07-11</span><span>场景：大佬分享 · 自媒体运营 · AI 应用</span><span>阅读：约 10 分钟</span></div>
+        </div>
+      </header>
+
+      <article class="wrap">
+        <section class="section" id="thesis">
+          <div class="thesis">
+            <div class="thesis-mark">“</div>
+            <div>
+              <p class="eyebrow">🧠 一句核心命题</p>
+              <h2>注意力不是结果；只有当它持续带来问题、试用、交付和复购时，才会变成收入。</h2>
+              <p>这场分享里真正有用的部分，不是“多打广告”或“AI 应用层很有机会”这种口号，而是一个经营顺序：<strong>用聚焦定位获得正确注意力，用真实案例获得信任，用小范围交付验证付费，再把验证过的过程沉淀成下一轮分发素材。</strong></p>
+            </div>
+          </div>
+          <div class="signal-grid">
+            <article><h3><span class="num">01</span>先有可验证的对象</h3><p>从你能解决的具体问题开始，不从“我要做个人 IP / AI 创业”开始。</p></article>
+            <article><h3><span class="num">02</span>再有公开证据</h3><p>内容和口播的价值，是让潜在客户看见你的过程、判断和交付能力。</p></article>
+            <article><h3><span class="num">03</span>最后看成交信号</h3><p>咨询、试用、付费和复购，才是判断项目该不该继续的硬反馈。</p></article>
+          </div>
+        </section>
+
+        <section class="section" id="ten-minutes">
+          <h2 class="section-title">⏱ 如果只读 10 分钟</h2>
+          <p class="section-intro">以下不是对原文逐句复述，而是从中筛出的五个能迁移到具体业务的判断。每条都保留了适用条件，避免把现场的鼓动性表达当作普遍规律。</p>
+          <div class="takeaways">
+            <article class="takeaway"><div class="no">01</div><h3>把“项目结果”拆成阶段性信号</h3><p>“没赚钱就是 0”适合提醒自己别把自嗨当业务；但探索期不能只盯收入。<b>先定义下一步可观察信号：</b>有人回复、有人愿意通话、有人试用、有人愿意付费。每个阶段都要有过关标准。</p></article>
+            <article class="takeaway"><div class="no">02</div><h3>分发是经营动作，不是额外工作</h3><p>内容、朋友圈、口播不是为了“曝光”本身，而是持续降低陌生人理解你和信任你的成本。<b>最有效的内容应当展示一个问题如何被解决，</b>而不是反复宣告自己很努力或赛道很热。</p></article>
+            <article class="takeaway"><div class="no">03</div><h3>先做一个账号能被识别的承诺</h3><p>赛道 IP 与人设 IP 的差别，本质是用户为何关注你。前者承诺稳定解决一类问题，后者承诺持续提供一个人的判断。冷启动时先研究目标受众已在看什么，再选择其中一种，不要混成杂货铺。</p></article>
+            <article class="takeaway"><div class="no">04</div><h3>AI 的价值在于缩短交付，而非替代判断</h3><p>“应用层能更快变现”只有在用户已存在具体任务时才成立。把 AI 当员工的正确部分是任务拆解、结果验收和流程迭代；<b>它无法替你决定该服务谁、解决什么、谁会付钱。</b></p></article>
+            <article class="takeaway"><div class="no">05</div><h3>先在自己业务里跑通，再卖给别人</h3><p>企业 AI 转型最稀缺的不是宏观方案，而是可复现的前后对比。先在自身团队选一个流程跑通，记录成本、质量和失败条件，再把它变成案例、服务包或产品能力。</p></article>
+            <article class="takeaway"><div class="no">06</div><h3>圈子只能加速闭环，合作仍要写清边界</h3><p>线下见面和社群可以帮你获得反馈、合作对象和第一批客户，但不能替代能力与交付。带着一个明确问题去见人，并把成本、收益、风险、交付和退出条件写下来，才不会把热闹误认成资源。</p></article>
+          </div>
+          <div class="boundary"><strong>适用边界：</strong>这里讨论的是已有技能、产品原型或服务能力的个人/小团队冷启动。若你在做长期研发、基础模型或强监管行业，短期收入不能单独作为去留依据，合规、技术里程碑和资金周期同样是硬约束。</div>
+        </section>
+
+        <section class="section" id="dfts">
+          <h2 class="section-title">🧭 道法术器势（→ 你可以怎么用）</h2>
+          <p class="section-intro">“道法术器势”不是为了把内容贴满标签，而是强迫一次分享回答：方向是否对、机制是否清楚、动作能否做、工具如何选、窗口在哪里。</p>
+          <table class="matrix">
+            <thead><tr><th>层</th><th>本场榨干版</th><th>动作化的怎么用</th></tr></thead>
+            <tbody>
+              <tr><td>道</td><td>经营的目标不是积累表达，而是形成可以被客户验证的价值交换。</td><td>写下你服务的对象、代价最高的问题，以及对方愿意用什么动作证明这件事有价值。</td></tr>
+              <tr><td>法</td><td>定位 → 证据 → 对话 → 交付 → 案例，是注意力转收入的反馈闭环。</td><td>每周只检查闭环卡在哪一段。不要在内容没带来对话时先扩张团队或换十个新平台。</td></tr>
+              <tr><td>术</td><td>研究同行内容、录口播、寻找标杆客户、把内部流程做成案例，都是低成本的验证动作。</td><td>本周选择一个对象、一种内容形式、一次试用邀请；让动作服务一个假设，而不是凑勤奋。</td></tr>
+              <tr><td>器</td><td>AI 工具、内容平台、社群与 CRM 都只是放大器；它们的价值取决于是否接在闭环上。</td><td>为每个工具写一个“输入—产出—指标”。无法关联到时间、成本、回复或转化的工具先停用。</td></tr>
+              <tr><td>势</td><td>AI 应用、短视频与垂直行业数字化仍在给小团队创造快速试错窗口。</td><td>选择需求明确、可在一周交付最小结果的细分场景；不要把“热门”误当成“我能赢”。</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="section" id="model">
+          <h2 class="section-title">🗺 可迁移模型：注意力到收入的五段闭环</h2>
+          <p class="section-intro">这张图把“做自媒体”“找客户”“做 AI 应用”放进同一个经营模型。它的关键不是每一段都做很多，而是下一段出现之前，上一段已经有真实信号。</p>
+          <div class="model">
+            <article class="model-step"><div class="step">1</div><h3>定义窄问题</h3><p>谁在什么情境下，愿意为哪一个结果付出时间或钱？一句话不要超过两个对象和一个结果。</p></article>
+            <article class="model-step"><div class="step">2</div><h3>制造证据</h3><p>亲自跑一次流程，保留输入、过程、失败点和结果。证据可以是案例、对比、模板或演示。</p></article>
+            <article class="model-step"><div class="step">3</div><h3>公开分发</h3><p>把证据改写成目标客户能看懂的内容，给出一个低摩擦下一步：回复、预约、试用或下载。</p></article>
+            <article class="model-step"><div class="step">4</div><h3>小单交付</h3><p>先用小范围服务或 MVP 验证价值，记录对方真正追问的语言、阻力和愿意付费的部分。</p></article>
+            <article class="model-step"><div class="step">5</div><h3>复用放大</h3><p>把有效交付写成 SOP、案例和报价边界，反过来成为下一轮内容与更高质量客户的筛选器。</p></article>
+          </div>
+        </section>
+
+        <section class="section" id="deep">
+          <h2 class="section-title">📚 深挖：4 个值得单独学的知识点</h2>
+          <div class="deep-list">
+            <article class="deep"><div class="deep-no">01</div><div><h3>“商业结果”需要领先指标，不只需要最终收入</h3><p><strong>是什么：</strong>把“收入”倒推成一组阶段信号：有效回复、需求访谈、试用、报价、付款。</p><p><strong>为什么重要：</strong>收入是滞后结果。只看它会让你在没有足够样本时过早放弃，或在有虚假热度时盲目加码。</p><p><strong>你能用：</strong>为当前项目只选一个本周信号，例如“获得 3 个愿意描述真实流程的访谈”，并设定不达标后的改法。</p></div></article>
+            <article class="deep"><div class="deep-no">02</div><div><h3>内容的最小单位不是观点，而是可被复述的证据</h3><p><strong>是什么：</strong>一条内容至少要让人看到一个具体变化：你替谁做了什么、怎么做、结果如何、何时不适用。</p><p><strong>为什么重要：</strong>抽象观点容易获得点赞，难以获得信任；证据会自然带来追问，追问才有机会变成对话。</p><p><strong>你能用：</strong>把“我会用 AI 提效”换成“我把某个重复流程从 X 步改成 Y 步，保留了哪些人工复核”。没有数据时也要写清过程与边界。</p></div></article>
+            <article class="deep"><div class="deep-no">03</div><div><h3>“做应用层”真正意味着贴近工作流末端</h3><p><strong>是什么：</strong>机会不在“套一个模型”，而在把模型插入用户已有的高频、重复、可验收任务。</p><p><strong>为什么重要：</strong>越靠近用户的交付物，越容易衡量节省了什么、替代了什么、是否应该付费。</p><p><strong>你能用：</strong>先画出一个行业流程，找出最耗时、最易出错、最影响成交的一步，再做一个只解决这一步的最小试验。</p></div></article>
+            <article class="deep"><div class="deep-no">04</div><div><h3>标杆客户的作用，是逼你形成可复制的标准</h3><p><strong>是什么：</strong>先服务一个足够典型的客户，用真实限制完善交付边界，而不是一开始就喊“全行业转型”。</p><p><strong>为什么重要：</strong>案例会暴露客户真正买单的结果、部署阻力和成本结构，帮你识别哪些环节能产品化。</p><p><strong>你能用：</strong>选择一个你能接触到的垂直场景，提供边界明确的小试点；前后记录时间、质量和人工介入，而不是只写好评。</p></div></article>
+          </div>
+        </section>
+
+        <section class="section" id="methods">
+          <h2 class="section-title">🛠 可直接复用的方法（含“不要误读成”）</h2>
+          <div class="methods">
+            <article class="method"><h3>一页定位测试</h3><ol><li>写“我帮谁在什么场景得到什么结果”。</li><li>列出 10 个目标对象真实会说的原话。</li><li>检查你最近 10 条内容能否都落在这句话里。</li><li>做一条带过程证据的内容，邀请对象回复问题。</li></ol><p class="misread"><strong>不要误读成：</strong>定位是永远不变的标签。它是当前最值得验证的承诺，信号不足时可以调整。</p></article>
+            <article class="method"><h3>内容取样，不抢着表达</h3><ol><li>收集 30 条目标客户反复阅读、转发或评论的内容。</li><li>标记它们解决的问题、证据形式和评论里的追问。</li><li>选择一个你能亲自复现的题目做出不同证据。</li><li>发布后统计有效对话，不只统计播放量。</li></ol><p class="misread"><strong>不要误读成：</strong>模仿爆款标题。要学习的是问题、证据与承接结构，而不是复制语气。</p></article>
+            <article class="method"><h3>标杆客户小试点</h3><ol><li>选一个具体团队的一段高频流程。</li><li>约定一周内可交付的最小结果与人工复核点。</li><li>记录前后耗时、出错、返工和负责人反馈。</li><li>把有效部分整理成案例与下一轮报价边界。</li></ol><p class="misread"><strong>不要误读成：</strong>免费做完所有需求。试点必须有范围、负责人和验收信号，否则只是无边界劳动。</p></article>
+          </div>
+        </section>
+
+        <section class="section" id="week">
+          <h2 class="section-title">📅 7 天作业：让“想做”出现硬信号</h2>
+          <p class="section-intro">这不是会议原话，而是基于上述方法给出的验证实验。只选一个细分问题执行，不要同时开三个新项目。</p>
+          <div class="week">
+            <article class="day"><div class="day-label">Day 1</div><div><strong>选窄问题</strong><p>写出一个你能在一周内提供最小结果的对象、场景和结果，并删除其余方向。</p></div><div class="hard-signal">硬信号：一页定位句 + 一个明确拒绝不做的范围</div></article>
+            <article class="day"><div class="day-label">Day 2</div><div><strong>找真实语言</strong><p>和 3 位目标对象聊天，或整理 30 条他们公开讨论的问题，记录原话而不是替他们概括。</p></div><div class="hard-signal">硬信号：得到 10 条可直接用于内容和报价的用户原话</div></article>
+            <article class="day"><div class="day-label">Day 3</div><div><strong>跑出一次证据</strong><p>用自己的流程或一个小样本完成一次任务，保留输入、人工介入、失败点和结果。</p></div><div class="hard-signal">硬信号：一份可展示的前后对比或演示记录</div></article>
+            <article class="day"><div class="day-label">Day 4</div><div><strong>发布证据型内容</strong><p>不要写观点合集。只解释一个问题如何处理、哪些人适用，并附一个低摩擦的回复入口。</p></div><div class="hard-signal">硬信号：发布 1 条可被目标对象看懂的内容</div></article>
+            <article class="day"><div class="day-label">Day 5</div><div><strong>主动换对话</strong><p>把内容发给 10 位确实可能有该问题的人，邀请他们挑错或试用，而不是泛泛求关注。</p></div><div class="hard-signal">硬信号：至少 3 个有效回复或 1 个明确拒绝理由</div></article>
+            <article class="day"><div class="day-label">Day 6</div><div><strong>设计小试点</strong><p>基于反馈写出服务范围、交付物、时限、人工复核和价格假设；优先减少承诺。</p></div><div class="hard-signal">硬信号：一页试点说明，可直接发送给潜在客户</div></article>
+            <article class="day"><div class="day-label">Day 7</div><div><strong>复盘闭环卡点</strong><p>检查问题、证据、分发、对话、交付哪一段最弱，只改一段后进入下一周。</p></div><div class="hard-signal">硬信号：保留或放弃该方向的书面决定与依据</div></article>
+          </div>
+        </section>
+
+        <section class="section" id="questions">
+          <h2 class="section-title">🤔 回到自己业务的追问</h2>
+          <div class="questions">
+            <div class="question">我现在获得的注意力里，有多少来自真正可能购买或合作的人，而不只是同行点赞？</div>
+            <div class="question">我的 AI 方案具体替谁减少了哪一步的时间、返工或风险？这件事如何被验收？</div>
+            <div class="question">如果下周只能做一件事，我应补“客户问题”“公开证据”还是“小单交付”？为什么？</div>
+          </div>
+        </section>
+
+        <section class="section" id="quotes">
+          <h2 class="section-title">💬 保留的金句</h2>
+          <p class="section-intro">只保留能承载方法的原话；情绪性口号、互相介绍、推广福利和站内推荐内容均已删除。</p>
+          <div class="quote-grid">
+            <blockquote><p>“不要沉迷宏大叙事，去思考下一个十分钟要做的事情。”</p><footer>在说什么：把远大目标收缩为下一次可观察的行动。</footer></blockquote>
+            <blockquote><p>“圈子是加速器，不是救生艇。”</p><footer>在说什么：关系可以放大已有能力，不能替代价值与交付。</footer></blockquote>
+            <blockquote><p>“先把公司内部做好，然后再分享经验给企业。”</p><footer>在说什么：先获得一手证明，再把经验产品化。</footer></blockquote>
+          </div>
+        </section>
+
+        <section class="section" id="source">
+          <h2 class="section-title">⚠️ 来源边界</h2>
+          <div class="source">
+            <h3>这是公开学习复盘，不是原始会议记录。</h3>
+            <p>本页基于用户粘贴的转录片段，以及所给飞书文档中的 AI 智能纪要进行结构化整理。智能纪要已提示“可能不准确”，且本次未逐段校对录音或完整文字记录，因此不把其中的宣传性表述视为事实。</p>
+            <ul>
+              <li>已删除：社交平台页面元素、实时热榜、广告、推荐账号、活动宣传、咨询福利与无关社交信息。</li>
+              <li>已删除：涉及订阅额度套取、Token 套利、加密预测与平台规则规避的内容；它们不构成可公开复用的方法。</li>
+              <li>已降级：个人收入、行业涨跌、职业经历和项目增长等未经独立核验的说法，不作为本页事实或投资建议。</li>
+              <li>“7 天作业”“五段闭环”“方法卡”均为本次复盘的迁移设计，不是现场讲者原话。</li>
+              <li>本页不构成商业、投资或职业建议；任何项目应以自身客户访谈、合规要求和真实数据验证。</li>
+            </ul>
+          </div>
+        </section>
+      </article>
+      <footer class="page-footer"><div class="wrap">Miaoji Decon · 道法术器势 · 公开脱敏学习复盘</div></footer>
+    </main>
+  </div>
+  <script>
+    const panel = document.getElementById('toc-panel');
+    document.getElementById('menu').addEventListener('click', () => panel.classList.toggle('open'));
+    panel.querySelectorAll('a').forEach(link => link.addEventListener('click', () => panel.classList.remove('open')));
+  </script>
+</body>
+</html>
