@@ -1,21 +1,26 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import json
 import sys
 import re
 from pathlib import Path
 
 
 REQUIRED_TEMPLATE_HEADINGS = [
+    "## 先说结论",
+    "## 🧾 材料与证据口径",
+    "## 🚦 可信度总览",
     "## ⏱ 如果只读 10 分钟",
     "## 🎯 这篇真正能学什么",
     "## 🧭 道法术器势（→ 你可以怎么用）",
     "## 📚 深挖：N 个值得单独学的知识点",
-    "## 🛠 可直接复用的方法（含\"不要误读成\"）",
-    "## 📅 7 天作业",
+    "## 🛠 可直接复用的方法",
+    "## 📅 给没参加 / 没看过的人的 7 天实践",
     "## 🤔 回到自己业务的追问",
-    "## 👥 关键人物与资源（这桌人能给你什么）",
+    "## 👥 关键人物与资源",
     "## 💬 金句",
+    "## 🔎 来源与时间码索引",
     "## ⚠️ 来源边界",
 ]
 
@@ -25,6 +30,9 @@ REQUIRED_SKILL_PHRASES = [
     "自媒体运营",
     "--owner-ids me",
     "--page-size 30",
+    "source-pack",
+    "assets/author-profile.json",
+    "scripts/validate_deconstruction.py",
 ]
 
 REQUIRED_WORKFLOW_PHRASES = [
@@ -34,15 +42,34 @@ REQUIRED_WORKFLOW_PHRASES = [
     "failures.jsonl",
     "no Base/Doc/GitHub push",
     "AI硬件/知识/人情世故/大佬分享/饭局闲聊/出海/自媒体运营",
+    "source pack",
+    "validate_deconstruction.py",
 ]
 
 REQUIRED_TEMPLATE_PHRASES = [
-    "source_mode: feishu-minutes | pasted-text",
+    "source_mode: feishu-minutes | pasted-text | source-pack",
     "minute_token: <token | none>",
     "minute_url: <url | none>",
     "基于用户提供的粘贴文本/本地附件",
     "不要把 pasted-text 写成 Feishu 原始妙记",
+    "https://x.com/_HIT_SZ_",
+    "siuserxiaowei",
 ]
+
+REQUIRED_EVIDENCE_PHRASES = [
+    "来源家族",
+    "主张台账",
+    "高可信",
+    "中可信",
+    "低可信",
+    "启动不等于完成",
+]
+
+EXPECTED_AUTHOR_PROFILE = {
+    "display_name": "siuser小伟",
+    "x_url": "https://x.com/_HIT_SZ_",
+    "wechat_id": "siuserxiaowei",
+}
 
 FIRST_CLASS_SCENES = ["出海", "自媒体运营"]
 PRIVATE_EXAMPLE_WARNING = "真实复盘仅存于私有 Obsidian 库"
@@ -125,6 +152,10 @@ def validate_repo(root: Path) -> list[str]:
     skill_path = require_file(root, "skills/miaoji-decon/SKILL.md", errors)
     workflow_path = require_file(root, "skills/miaoji-decon/references/workflow.md", errors)
     template_path = require_file(root, "skills/miaoji-decon/references/template.md", errors)
+    evidence_path = require_file(root, "skills/miaoji-decon/references/evidence-protocol.md", errors)
+    profile_path = require_file(root, "skills/miaoji-decon/assets/author-profile.json", errors)
+    openai_path = require_file(root, "skills/miaoji-decon/agents/openai.yaml", errors)
+    output_validator_path = require_file(root, "skills/miaoji-decon/scripts/validate_deconstruction.py", errors)
     examples_path = require_file(root, "skills/miaoji-decon/examples/README.md", errors)
     readme_path = require_file(root, "README.md", errors)
     index_path = require_file(root, "docs/index.html", errors)
@@ -142,6 +173,17 @@ def validate_repo(root: Path) -> list[str]:
     template_text = read_text(template_path)
     require_phrases(template_text, REQUIRED_TEMPLATE_HEADINGS, "template.md", errors)
     require_phrases(template_text, REQUIRED_TEMPLATE_PHRASES, "template.md", errors)
+    require_phrases(read_text(evidence_path), REQUIRED_EVIDENCE_PHRASES, "evidence-protocol.md", errors)
+    require_phrases(read_text(openai_path), ["$miaoji-decon", "allow_implicit_invocation"], "openai.yaml", errors)
+    require_phrases(read_text(output_validator_path), ["x_url", "wechat_id"], "validate_deconstruction.py", errors)
+
+    try:
+        profile = json.loads(read_text(profile_path))
+    except (ValueError, OSError) as exc:
+        errors.append(f"invalid author-profile.json: {exc}")
+    else:
+        if profile != EXPECTED_AUTHOR_PROFILE:
+            errors.append("author-profile.json must keep the fixed siuser小伟 X / Twitter and WeChat values")
     for label, text in [
         ("SKILL.md", skill_text),
         ("workflow.md", workflow_text),

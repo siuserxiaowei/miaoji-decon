@@ -26,6 +26,19 @@
 7. 不把原始粘贴文本、附件正文或 draft-only 复盘提交到公开仓库。
 8. 不进入 `failures.jsonl` 的 Feishu-token 补偿队列；如果后续用户补充 Feishu URL/token，再按手动单条妙记流程补齐三端归档。
 
+## 多来源资料包（source pack）
+
+当用户一次提供多份会议链接、文档、论文、网页或本地附件：
+
+1. 先列材料清单与读取状态；读取失败要显式报告。
+2. 按 `evidence-protocol.md` 合并来源家族。同场会议的逐字稿、AI 纪要和不同平台总结不能当三重验证。
+3. 统一时间码基准，记录其他平台偏移和转写歧义。
+4. 默认 draft-only；只有用户明确要求保存或发布，才写目标系统。
+5. 用户要求多 Agent 时，保留编号、角色、完成状态与补做关系；不能把启动当完成。
+6. 在任何写入前追加 `assets/author-profile.json` 中的 X / Twitter 和微信号，并运行 `scripts/validate_deconstruction.py`。
+
+公开发布前必须再检查：材料是否允许公开、真实人名/客户/业务数据是否脱敏、原始逐字稿是否被意外带入、联系方式是否准确可见。
+
 ## 飞书 Doc（详版，复用 miaoji-s 逻辑）
 
 创建到个人云空间（或 config 的 `doc_parent_position`）：
@@ -75,8 +88,9 @@ lark-cli docs +update --api-version v2 --as user --doc <index_doc_token> --comma
 1. 路径：`{obsidian_vault}/{obsidian_subdir}/{date}-{safe_title}.md`
    - `safe_title`：标题去掉 `/ \ : * ? " < > |`，空格保留或换 `-`。
 2. frontmatter 沿用库里已有 `type: meeting-digest` 体例，新增 `场景类型` 与三端链接字段。
-3. 正文按 `template.md`。
-4. 写完做幂等检查：同名文件已存在且 processed 标 archived → 跳过或按用户要求覆盖。
+3. 正文按 `template.md`，并从 `assets/author-profile.json` 追加固定作者联系。
+4. 写完运行 `python3 scripts/validate_deconstruction.py "{file}" --mode standard`；深度档改用 `--mode deep`。
+5. 做幂等检查：同名文件已存在且 processed 标 archived → 跳过或按用户要求覆盖。
 
 ## GitHub push + 在线链接
 
