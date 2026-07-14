@@ -1,0 +1,7 @@
+interface:
+  display_name: "妙记拆解 · 道法术器势"
+  short_description: "把会议与多来源材料拆成有证据、有边界、可行动的学习报告"
+  brand_color: "#C96842"
+  default_prompt: "Use $miaoji-decon to audit the source families and turn these materials into a trustworthy 道法术器势 learning report for people who did not attend."
+policy:
+  allow_implicit_invocation: true
