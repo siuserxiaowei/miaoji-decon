@@ -35,9 +35,27 @@
 3. 统一时间码基准，记录其他平台偏移和转写歧义。
 4. 默认 draft-only；只有用户明确要求保存或发布，才写目标系统。
 5. 用户要求多 Agent 时，保留编号、角色、完成状态与补做关系；不能把启动当完成。
-6. 在任何写入前追加 `assets/author-profile.json` 中的 X / Twitter 和微信号，并运行 `scripts/validate_deconstruction.py`。
+6. 运行 `scripts/validate_deconstruction.py`；仅当 `assets/author-profile.json` 已配置使用者自己的 X / Twitter 和微信号时，才在任何写入前追加署名。
 
-公开发布前必须再检查：材料是否允许公开、真实人名/客户/业务数据是否脱敏、原始逐字稿是否被意外带入、联系方式是否准确可见。
+公开发布前必须再检查：材料是否允许公开、真实人名/客户/业务数据是否脱敏、原始逐字稿是否被意外带入、联系方式是否准确可见。完整脱敏流程见 `references/redaction-checklist.md`。
+
+## 长逐字稿分块策略
+
+逐字稿超过约 5 万字节时，不要一次性通读硬拆：
+
+1. 按行 / 时间码边界切成 3–5 块，切块不砍断说话人的完整段落。
+2. 每块独立提取详细笔记（事实、主张、人物、时间码），块间互不依赖。
+3. 由主 Agent 合并各块笔记做合成；说话人归属按 `evidence-protocol.md` 的编号不稳定警告交叉验证，不轻信 Speaker N。
+4. **合成时必须产出"转写歧义与矛盾点"清单**：口径冲突的数字（两个值并列）、疑似串号的人物、音译统一候选。清单写进报告附录（模板见 `template.md` 的 🧪 章节），不得默默取舍后只留一个版本。
+
+## 主动联网核查步骤
+
+主 Agent 合成前，必须先过一遍核查（规则见 `evidence-protocol.md` 的「4.3 主动联网核查」）：
+
+1. **汇总待核查项**：合并各提取块（及单块材料的）待核查清单——ASR 音译专名、口径冲突的数字、高风险事实（市场规模、政策、价格、规格、金额、发布日期）。
+2. **逐项搜索**：每一项都联网核查，优先官方来源；核查工具以运行环境实际可用的为准（WebSearch、FetchURL、或用户安装的搜索类 skill 均可）。
+3. **记录进附录**：每项写下核查项 / 原说法 / 核查结论 / 来源 URL / 核查日期，写进报告附录的「🔍 联网核查记录」；讲者口径与官方数据冲突时并置保留，不改写讲者原话。
+4. 只有搜不到、或来源互相矛盾且无官方口径时，才写"未核实"，并注明已尝试的查询词；未经核查的高风险事实不得进入高可信区。
 
 ## 飞书 Doc（详版，复用 miaoji-s 逻辑）
 
@@ -88,7 +106,7 @@ lark-cli docs +update --api-version v2 --as user --doc <index_doc_token> --comma
 1. 路径：`{obsidian_vault}/{obsidian_subdir}/{date}-{safe_title}.md`
    - `safe_title`：标题去掉 `/ \ : * ? " < > |`，空格保留或换 `-`。
 2. frontmatter 沿用库里已有 `type: meeting-digest` 体例，新增 `场景类型` 与三端链接字段。
-3. 正文按 `template.md`，并从 `assets/author-profile.json` 追加固定作者联系。
+3. 正文按 `template.md`；`assets/author-profile.json` 已配置时追加使用者自己的作者联系，未配置时不带署名。
 4. 写完运行 `python3 scripts/validate_deconstruction.py "{file}" --mode standard`；深度档改用 `--mode deep`。
 5. 做幂等检查：同名文件已存在且 processed 标 archived → 跳过或按用户要求覆盖。
 
@@ -107,6 +125,15 @@ git push {remote} {branch}
 降级策略：
 - `gh` 未登录或 push 失败 → 本地 commit 即可，回执标注未上线。
 - 库为私有、需要公开可看的链接 → `gh gist create "{file}" --desc "{date} {title} 道法术器拆解"`，用 gist 链接（私密 gist 凭链接可看）。
+
+**发布后验证（回执链接前必做）**：push / Pages 部署后，必须验证链接真实可访问再回执：
+
+```bash
+curl -s -o /dev/null -w '%{http_code}' <url>   # 必须为 200
+curl -s <url> | grep -F "<报告标题关键词>"       # 页面/文件须包含关键标记
+```
+
+GitHub Pages 构建有延迟，刚 push 完可能 404——重试等待（如每次间隔 30–60 秒，最多几分钟），确认 200 且关键标记存在后才把链接写进回执。验证不过的链接不得回执。
 
 ## 调度（禁用 CronCreate）
 

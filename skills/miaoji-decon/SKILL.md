@@ -1,7 +1,7 @@
 ---
 name: miaoji-decon
 description: |
-  妙记拆解 · 道法术器势。把飞书妙记、会议逐字稿、同场会议的多份纪要、粘贴文本或用户指定的资料包，拆成面向缺席者的可信学习报告：先做来源家族与证据审计，再给结论、可信度、道法术器势、选型矩阵、可迁移 SOP、一周实践和时间码索引。支持快速/标准/深度三档；复杂任务可按用户要求使用多 Agent，但必须如实记录完成状态。飞书来源可归档到 Obsidian、飞书 Base/Doc 与 GitHub；其他来源默认草稿。触发方式：/妙记拆解、/道法术器、/dfsq、/拆解妙记、/会议纪要拆解，以及“给没参加/没看过的人做深度拆解”“审计多份材料并提炼结论”。
+  妙记拆解 · 道法术器势。把飞书妙记、会议逐字稿、同场会议的多份纪要、粘贴文本或用户指定的资料包，拆成面向缺席者的可信学习报告：先做来源家族与证据审计，再给结论、可信度、道法术器势、选型矩阵、可迁移 SOP、一周实践和时间码索引；模糊信息主动联网核查，不许直接用"未核实"交差。支持快速/标准/深度三档；复杂任务可按用户要求使用多 Agent，但必须如实记录完成状态。飞书来源可归档到 Obsidian、飞书 Base/Doc 与 GitHub；其他来源默认草稿。触发方式：/妙记拆解、/道法术器、/dfsq、/拆解妙记、/会议纪要拆解，以及“给没参加/没看过的人做深度拆解”“审计多份材料并提炼结论”。
 ---
 
 # 妙记拆解 · 道法术器势
@@ -28,7 +28,7 @@ description: |
 - 7 天作业没有可观察硬信号（发布、询盘、转化、回复、收藏、点击、报名、成交等），不合格。
 - 金句只能作为证据或传播素材，不能替代模型和行动方案。
 - 多份材料来自同一场会、同一作者或同一数据源时，必须归为一个“来源家族”，不得伪装成多个独立信源。
-- 最终正文缺少 X / Twitter 与微信号固定署名，不合格；发布前运行署名校验。
+- 仅当使用者已配置自己的作者署名时，正文才必须带署名且发布前运行署名校验；默认无署名。
 
 每一次 Feishu 妙记会议要有明确去处；`pasted-text` 输入默认只生成草稿，走后文单独分支：
 
@@ -115,6 +115,7 @@ description: |
 用户给出多个 URL、文档、论文、会议页面或本地文件时：
 
 - 先读完用户指定材料，再画“来源家族图”；同一场会议的逐字稿、AI 纪要和不同平台承载页只算一个来源家族。
+- **路由规则**：用户一次给多个链接/材料时，先做来源家族判定——同一场会的纪要、文字记录、妙记逐字稿合并为一个 source-pack，逐字稿为主证据、AI 纪要只用于定位；多链接不等于多信源。合法输入明确包含图片材料（议程海报、群公告截图等）。
 - 原始逐字稿/原文优先于 AI 纪要、转载和二次总结；机器纪要只用于定位，不能覆盖原始证据。
 - 需要核查易变事实、官方规格、高风险建议或外部争议时，补一手独立来源，并标注核查日期。
 - 默认只返回草稿；只有用户明确要求保存、发布或上线，才进入对应写入链路。
@@ -240,9 +241,9 @@ lark-cli vc +notes --as user --minute-tokens <token> --format json --output-dir 
 
 | 档位 | 适用 | 核心交付 |
 |---|---|---|
-| 快速 | 单一低风险来源、材料短、用户只要抓重点 | 结论、边界、3–5 个动作、来源、固定署名 |
-| 标准 | 一般会议/访谈/文章 | 核心命题、可信度、道法术器势、深挖、方法、7 天实践、来源索引、固定署名 |
-| 深度 | 多来源、长逐字稿、高风险、争议大、用户要求 20 Agent | 来源家族图、主张台账、高/中/低可信、共识与分歧、反方审计、选择矩阵、时间码索引、Agent 状态、固定署名 |
+| 快速 | 单一低风险来源、材料短、用户只要抓重点 | 结论、边界、3–5 个动作、来源、可选署名 |
+| 标准 | 一般会议/访谈/文章 | 核心命题、可信度、道法术器势、深挖、方法、7 天实践、来源索引、可选署名 |
+| 深度 | 多来源、长逐字稿、高风险、争议大、用户要求 20 Agent | 来源家族图、主张台账、高/中/低可信、共识与分歧、反方审计、选择矩阵、时间码索引、Agent 状态、可选署名 |
 
 证据审计和多 Agent 完成真实性规则见 `references/evidence-protocol.md`，完整输出模板见 `references/template.md`。标准/深度档固定章节顺序：
 
@@ -263,7 +264,7 @@ lark-cli vc +notes --as user --minute-tokens <token> --format json --output-dir 
 💬 金句                   ← 原话 + 一句"在说什么"
 🔎 来源与时间码索引         ← 结论可以回到原文位置
 ⚠️ 来源边界               ← 已知、未知、未核实、分析推断
-✍️ 作者联系               ← 固定 X / Twitter + 微信号
+✍️ 作者联系（可选）         ← 仅在使用者已配置自己的署名时出现
 ```
 
 **框架基准（生财有术 / AI破局）**：道以明向、法以立本、术以立策、器以成事、势以察时——道=做对的事，法术器=把事做对，势=何时做。
@@ -278,24 +279,27 @@ lark-cli vc +notes --as user --minute-tokens <token> --format json --output-dir 
 4. **深挖优先**：先把信息点榨干再组织；宁可多挖，不可凑数；信息空的会议就少写，别注水。
 5. **负面结论也要有证据**：根因未确定就写“未知”，不能把时间相关性写成因果。
 6. **不堆标签噪声**：机器元数据留在 frontmatter/台账，正文写“人话 + 怎么用”。
+7. **凡模糊必搜**：音译专名、冲突数字、高风险事实必须主动联网核查（优先官方来源），能搜到官方口径就不许写"未核实"；核查结果与讲者口径并置呈现，不改写讲者原话；确实核查无果才写"未核实"，并注明已尝试的查询词。详见 `references/evidence-protocol.md` 的「4.3 主动联网核查」。
 
-## 固定作者署名（每篇必带）
+## 可选作者署名（默认关闭）
 
-每次生成拆解前读取 `assets/author-profile.json`，在正文最后追加：
+本 Skill 是通用工具：每个使用者拆解的是**自己参加的会议**、给自己复盘用，产物默认**不带任何署名**。
+
+只有使用者在自己安装的 `assets/author-profile.json` 里填写了**自己的** `x_url` 与 `wechat_id`（仓库内是空模板）后，生成拆解时才在正文末尾追加署名块：
 
 ```markdown
 ---
 
-作者：siuser小伟
+作者：{display_name}
 
-X / Twitter：[https://x.com/_HIT_SZ_](https://x.com/_HIT_SZ_)
+X / Twitter：{x_url}
 
-微信号：`siuserxiaowei`
+微信号：`{wechat_id}`
 ```
 
-- 草稿、Obsidian、飞书 Doc、GitHub Markdown 和公开 HTML 都必须带；HTML 可放在顶部联系条或页尾，但两项都必须可见。
-- 不修改账号拼写，不从会议内容里猜作者联系方式。
-- 发布前运行 `python3 scripts/validate_deconstruction.py <文件> --mode <quick|standard|deep>`；任一联系方式缺失就停止发布并修复。
+- 追加的是配置文件里那个人的联系方式，不得硬编码任何人，也不从会议内容里猜联系方式。
+- 仅在已配置时，草稿、Obsidian、飞书 Doc、GitHub Markdown 和公开 HTML 才都必须带；HTML 可放在顶部联系条或页尾。
+- 发布前运行 `python3 scripts/validate_deconstruction.py <文件> --mode <quick|standard|deep>`：已配置时任一联系方式缺失就停止发布并修复；未配置时自动跳过署名校验。
 
 ---
 
@@ -323,7 +327,7 @@ git push {remote} {branch}
 
 ### 收口
 
-三端互链：Obsidian frontmatter 写 `base_record_id`/`doc_url`/`github_url`；Base 行写 Obsidian/Doc 链接；追加飞书总索引。
+三端互链：Obsidian frontmatter 写 `base_record_id`/`doc_url`/`github_url`；Base 行写 Obsidian/Doc 链接；追加飞书总索引。回执链接必须先通过发布后验证（HTTP 200 + 关键标记），见 `references/workflow.md` 的「发布后验证」。
 
 ---
 
@@ -337,7 +341,7 @@ git push {remote} {branch}
 4. **去重**：token 已 `archived=true` 跳过。
 5. **取产物**：`vc +notes`，缺权限按提示告知用户。
 6. **证据卡 + 场景分类 + 道法术器势拆解**：按 `references/evidence-protocol.md` 与 `references/template.md`。
-7. **追加固定署名并校验**：读取 `assets/author-profile.json`，运行输出校验；失败不得发布。
+7. **可选署名并校验**：读取 `assets/author-profile.json`；已配置时追加署名并运行输出校验，失败不得发布；未配置时跳过署名。
 8. **写 Obsidian**；若不是"只生成草稿"，再 `git add/commit/push`。
 9. **写飞书 Base + Doc**，收口索引，三端互链；"只生成草稿"时跳过。
 10. **回执**：见下。
@@ -350,7 +354,7 @@ git push {remote} {branch}
 2. **读取来源**：先读完所有用户指定文本/附件；`minute_token: none`、`minute_url: none`，不要做 token lookup。
 3. **跳过外部取数**：不调用 `minutes +search`、不调用 `vc +notes`，不要求 lark-cli/Feishu token。
 4. **生成草稿**：按 `references/evidence-protocol.md` 与 `references/template.md` 产出学习复盘；来源边界必须写"基于用户提供的粘贴文本/本地附件，未连接飞书妙记原始记录"。
-5. **追加固定署名并校验**：草稿也必须带 X / Twitter 与微信号。
+5. **可选署名并校验**：仅当已配置 `assets/author-profile.json` 时草稿才带署名。
 6. **持久化边界**：默认只在当前对话返回草稿；只有用户明确要求本地/私有保存时，才写私有目标。跳过 Obsidian 正式库、GitHub push、飞书 Base、飞书 Doc、飞书索引。
 7. **补偿边界**：不读写 `processed.jsonl` / `failures.jsonl`，不进入 Feishu-token 失败补偿；后续用户补 Feishu URL/token 时，再从 Feishu Minutes 分支重新处理。
 8. **回执**：说明这是 pasted-text draft-only 结果，无 GitHub/Base/Doc 链接；如已按用户要求保存到私有位置，只回执私有路径。
@@ -361,7 +365,7 @@ git push {remote} {branch}
 2. 建立来源家族、时间码基准和主张台账；同源材料只算一次。
 3. 按快速/标准/深度路由；用户要求 N 个 Agent 时，保存编号、角色、状态、补做关系和最终采纳情况。
 4. 输出共识、分歧、高/中/低可信结论、道法术器势、可迁移 SOP/矩阵与行动计划。
-5. 追加固定署名并运行校验。
+5. 按需追加可选署名并运行校验。
 6. 默认 draft-only；用户明确要求保存/发布时，才执行目标仓库或页面的写入与上线验证。
 
 ---
@@ -409,6 +413,7 @@ git push {remote} {branch}
 - 删除、覆盖、转移 owner、`git push --force` 前必须另行确认。
 - `docs +create`/`docs +update` 必须带 `--api-version v2`；`vc +notes` 只支持 user 身份。
 - 不要把 token / appSecret / accessToken 写进文档、日志、Base 或 git。
+- 公开产物发布前必须过脱敏门禁（`references/redaction-checklist.md`）与 `--banned-terms` 校验；`~/.miaoji-decon/redactions.json`、`aliases.json` 等含真实实体名的私有文件绝不提交公开仓库。
 - 无逐字稿/产物时不编造；区分"讲者讲 vs 我引申"。
 
 ---

@@ -52,8 +52,7 @@ REQUIRED_TEMPLATE_PHRASES = [
     "minute_url: <url | none>",
     "基于用户提供的粘贴文本/本地附件",
     "不要把 pasted-text 写成 Feishu 原始妙记",
-    "https://x.com/_HIT_SZ_",
-    "siuserxiaowei",
+    "author-profile.json",
 ]
 
 REQUIRED_EVIDENCE_PHRASES = [
@@ -66,9 +65,9 @@ REQUIRED_EVIDENCE_PHRASES = [
 ]
 
 EXPECTED_AUTHOR_PROFILE = {
-    "display_name": "siuser小伟",
-    "x_url": "https://x.com/_HIT_SZ_",
-    "wechat_id": "siuserxiaowei",
+    "display_name": "",
+    "x_url": "",
+    "wechat_id": "",
 }
 
 FIRST_CLASS_SCENES = ["出海", "自媒体运营"]
@@ -183,7 +182,7 @@ def validate_repo(root: Path) -> list[str]:
         errors.append(f"invalid author-profile.json: {exc}")
     else:
         if profile != EXPECTED_AUTHOR_PROFILE:
-            errors.append("author-profile.json must keep the fixed siuser小伟 X / Twitter and WeChat values")
+            errors.append("author-profile.json must stay an empty template; personal contact values belong in each user's own install, not in the public repo")
     for label, text in [
         ("SKILL.md", skill_text),
         ("workflow.md", workflow_text),

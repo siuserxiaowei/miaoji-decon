@@ -51,8 +51,7 @@ class ValidateRepoTests(unittest.TestCase):
             "minute_url: <url | none>",
             "不要把 pasted-text 写成 Feishu 原始妙记",
             "基于用户提供的粘贴文本/本地附件",
-            "https://x.com/_HIT_SZ_",
-            "siuserxiaowei",
+            "author-profile.json",
         ]
         (root / "skills/miaoji-decon/references/template.md").write_text(
             "\n".join(headings + template_phrases),
@@ -72,11 +71,7 @@ class ValidateRepoTests(unittest.TestCase):
         )
         (root / "skills/miaoji-decon/assets/author-profile.json").write_text(
             json.dumps(
-                {
-                    "display_name": "siuser小伟",
-                    "x_url": "https://x.com/_HIT_SZ_",
-                    "wechat_id": "siuserxiaowei",
-                },
+                {"display_name": "", "x_url": "", "wechat_id": ""},
                 ensure_ascii=False,
             ),
             encoding="utf-8",
@@ -111,6 +106,24 @@ class ValidateRepoTests(unittest.TestCase):
         self.addCleanup(tmp.cleanup)
         errors = validate_repo(root)
         self.assertTrue(any("public examples" in error for error in errors))
+
+    def test_non_empty_author_profile_is_error(self):
+        # 公开仓库里的 author-profile.json 必须是空模板，使用者的真实联系方式只能留在自己的安装里
+        tmp, root = self.make_repo()
+        self.addCleanup(tmp.cleanup)
+        (root / "skills/miaoji-decon/assets/author-profile.json").write_text(
+            json.dumps(
+                {
+                    "display_name": "示例作者",
+                    "x_url": "https://x.com/example_user",
+                    "wechat_id": "example_wechat",
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        errors = validate_repo(root)
+        self.assertTrue(any("author-profile.json" in error for error in errors))
 
     def test_public_private_looking_extra_example_is_error(self):
         tmp, root = self.make_repo()

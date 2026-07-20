@@ -110,7 +110,7 @@ python3 skills/miaoji-decon/scripts/validate_deconstruction.py path/to/report.md
 💬 金句                   ← 原话 + 一句"在说什么"
 🔎 来源与时间码索引         ← 重要结论能回到原文
 ⚠️ 来源边界
-作者联系                   ← 固定 X / Twitter + 微信号
+作者联系（可选）            ← 使用者配置自己的署名后才会出现
 ```
 
 **框架基准（生财有术 / AI破局）**：道以明向、法以立本、术以立策、器以成事、势以察时——道=做对的事，法术器=把事做对，势=何时做。
@@ -124,7 +124,7 @@ python3 skills/miaoji-decon/scripts/validate_deconstruction.py path/to/report.md
 - 按场景分类（AI硬件 / 知识 / 人情世故 / 大佬分享 / 饭局闲聊 / 出海 / 自媒体运营）自适应详略。
 - 深挖每场会的信息点/知识点，按学习复盘结构组织；严格区分"讲者讲 vs 我引申"、数字带销售口径标存疑、不堆标签噪声、不编造、信息空就少写别注水。
 - 多 Agent 任务保存逐个编号与完成/中断/失败/补做状态，不把“已启动”写成“已完成”。
-- 每篇拆解强制附作者联系：X / Twitter [`@_HIT_SZ_`](https://x.com/_HIT_SZ_)、微信号 `siuserxiaowei`；漏任一项，发布校验失败。
+- 作者署名为可选：使用者在 `assets/author-profile.json` 配置自己的 X / Twitter 与微信号后，每篇拆解才附带署名；已配置但漏任一项时发布校验失败，未配置时自动跳过。
 - 三端归档：Obsidian「会议纪要拆解」+ 飞书在线文档/多维表格 + push GitHub。
 - 两层复利：复盘是 source 层，把道/法/势/人 升华进 Wiki 母库（概念页/人物页），越攒越厚。
 
@@ -152,7 +152,7 @@ npx -y skills add siuserxiaowei/miaoji-decon -g --skill miaoji-decon -y --full-d
 
 ## 定时自动扫描
 
-`~/.miaoji-decon/scan.sh` + macOS launchd（`com.miaoji-decon.scan`，每天 8:00）headless 调 `claude` 执行扫描提示词：扫新妙记 → 深度学习复盘 → 写 Obsidian → push GitHub。**禁止用 `CronCreate`**（7 天过期）。
+`~/.miaoji-decon/scan.sh` + macOS launchd（`com.miaoji-decon.scan`，每天 22:00，Asia/Shanghai）headless 调 `claude` 执行扫描提示词：扫新妙记 → 深度学习复盘 → 写 Obsidian → push GitHub。**禁止用 `CronCreate`**（7 天过期）。
 
 ## 参考来源
 
